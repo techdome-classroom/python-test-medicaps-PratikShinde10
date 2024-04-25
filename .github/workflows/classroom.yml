@@ -14,15 +14,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: program1.py
-      id: program1-py
+    - name: test1.py
+      id: test1-py
       uses: education/autograding-python-grader@v1
       with:
         timeout: 10
         max-score: 20
         setup-command: sudo -H pip3 install pytest
-    - name: program2.py
-      id: program2-py
+    - name: test2.py
+      id: test2-py
       uses: education/autograding-python-grader@v1
       with:
         timeout: 10
@@ -31,7 +31,7 @@ jobs:
     - name: Autograding Reporter
       uses: education/autograding-grading-reporter@v1
       env:
-        PROGRAM1-PY_RESULTS: "${{steps.program1-py.outputs.result}}"
-        PROGRAM2-PY_RESULTS: "${{steps.program2-py.outputs.result}}"
+        TEST1-PY_RESULTS: "${{steps.test1-py.outputs.result}}"
+        TEST2-PY_RESULTS: "${{steps.test2-py.outputs.result}}"
       with:
-        runners: program1-py,program2-py
+        runners: test1-py,test2-py
